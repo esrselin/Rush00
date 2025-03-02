@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   rush00.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   -----------------------------------------------+#+  +:+       +#+        */
+/*   By: esakgul <esakgul@student.42istanbul.com.t  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/01 18:12:20                      #+#    #+#             */
-/*   Updated: 2025/03/01 18:31:04                     ###   ########.fr       */
+/*   Created: 2025/03/01 18:12:20 by esakgul           #+#    #+#             */
+/*   Updated: 2025/03/02 15:05:22 by esakgul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+
+void	ft_putchar(char c);
 
 void	rush_top(int x)
 {
@@ -21,12 +23,13 @@ void	rush_top(int x)
 	{
 		if (m == 1 || m == x)
 		{
-			write(1, "o", 1);
+			ft_putchar('o');
 		}
 		else
-			write(1, "-", 1);
+			ft_putchar('-');
 		m++;
 	}
+	ft_putchar('\n');
 }
 
 void	rush_middle(int x, int y)
@@ -37,16 +40,17 @@ void	rush_middle(int x, int y)
 	n = 1;
 	while (n < y - 1)
 	{
-		write(1, "\n|", 2);
+		ft_putchar('|');
 		k = x - 2;
-		while (k--)
+		while (k-->0)
 		{
-			write(1, " ", 1);
+			ft_putchar(' ');
 		}
-		write(1, "|", 1);
+		if(x > 1)
+			ft_putchar('|');
+		ft_putchar('\n');
 		n++;
 	}
-	write(1, "\n", 1);
 }
 
 void	rush_bottom(int x)
@@ -58,15 +62,15 @@ void	rush_bottom(int x)
 	{
 		if (m == 1 || m == x)
 		{
-			write(1, "o", 1);
+			ft_putchar('o');
 		}
 		else
 		{
-			write(1, "-", 1);
+			ft_putchar('-');
 		}
 		m++;
 	}
-	write(1, "\n", 1);
+	ft_putchar('\n');
 }
 
 int	rush(int x, int y)
@@ -78,12 +82,13 @@ int	rush(int x, int y)
 	}
 	if (x == 1 && y == 1)
 	{
-		write(1, "o", 1);
+		ft_putchar('o');
+		ft_putchar('\n');
 		return (0);
 	}
 	if (x == 0 || y == 0)
 	{
-		write(1, "\n", 1);
+		ft_putchar('\n');
 		return (1);
 	}
 	rush_top(x);
@@ -92,10 +97,4 @@ int	rush(int x, int y)
 	if (y > 1)
 		rush_bottom(x);
 	return (0);
-}
-
-int	main(void)
-{
-    rush(4, 0);
-    return (0);
 }
